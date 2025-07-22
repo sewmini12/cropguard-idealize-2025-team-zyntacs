@@ -4,6 +4,7 @@ import 'screens/disease_detection.dart';
 import 'screens/community.dart';
 import 'screens/weather_advice.dart';
 import 'screens/profile.dart';
+import 'screens/bot.dart';
 
 void main() {
   runApp(const CropGuardApp());
@@ -38,6 +39,7 @@ class CropGuardApp extends StatelessWidget {
         '/community': (context) => const CommunityScreen(),
         '/weather-advice': (context) => const WeatherAdviceScreen(),
         '/profile': (context) => const ProfileScreen(),
+        '/bot': (context) => const BotScreen(),
       },
     );
   }
@@ -58,6 +60,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const DiseaseDetectionScreen(),
     const CommunityScreen(),
     const WeatherAdviceScreen(),
+    const BotScreen(),
     const ProfileScreen(),
   ];
 
@@ -91,6 +94,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.cloud),
             label: 'Weather',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.smart_toy),
+            label: 'AI Assistant',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
