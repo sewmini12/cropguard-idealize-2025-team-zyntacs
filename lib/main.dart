@@ -5,6 +5,7 @@ import 'screens/community.dart';
 import 'screens/weather_advice.dart';
 import 'screens/profile.dart';
 import 'screens/bot.dart';
+import 'screens/auth/splash_screen.dart';
 
 void main() {
   runApp(const CropGuardApp());
@@ -32,7 +33,7 @@ class CropGuardApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const MainNavigationScreen(),
+      home: const SplashScreen(),
       routes: {
         '/home': (context) => const HomeScreen(),
         '/disease-detection': (context) => const DiseaseDetectionScreen(),

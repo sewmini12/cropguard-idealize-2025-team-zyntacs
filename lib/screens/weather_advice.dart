@@ -8,7 +8,6 @@ class WeatherAdviceScreen extends StatefulWidget {
 }
 
 class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
-  
   final Map<String, dynamic> _currentWeather = {
     'temperature': 24,
     'humidity': 65,
@@ -65,28 +64,32 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
   final List<Map<String, dynamic>> _farmingAdvice = [
     {
       'title': 'Watering Recommendation',
-      'content': 'Reduce watering today due to expected rain. Check soil moisture before next watering.',
+      'content':
+          'Reduce watering today due to expected rain. Check soil moisture before next watering.',
       'icon': Icons.water_drop,
       'color': Colors.blue,
       'priority': 'high',
     },
     {
       'title': 'Pest Alert',
-      'content': 'High humidity conditions favor aphid development. Monitor plants closely.',
+      'content':
+          'High humidity conditions favor aphid development. Monitor plants closely.',
       'icon': Icons.bug_report,
       'color': Colors.orange,
       'priority': 'medium',
     },
     {
       'title': 'Planting Window',
-      'content': 'Good conditions for transplanting seedlings this week. Mild temperatures expected.',
+      'content':
+          'Good conditions for transplanting seedlings this week. Mild temperatures expected.',
       'icon': Icons.local_florist,
       'color': Colors.green,
       'priority': 'low',
     },
     {
       'title': 'Disease Prevention',
-      'content': 'Apply fungicide before Wednesday\'s rain to prevent fungal diseases.',
+      'content':
+          'Apply fungicide before Wednesday\'s rain to prevent fungal diseases.',
       'icon': Icons.healing,
       'color': Colors.purple,
       'priority': 'high',
@@ -203,9 +206,12 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildWeatherDetail('Humidity', '${_currentWeather['humidity']}%', Icons.water_drop),
-                _buildWeatherDetail('Wind', '${_currentWeather['windSpeed']} km/h', Icons.air),
-                _buildWeatherDetail('UV Index', '${_currentWeather['uvIndex']}', Icons.wb_sunny),
+                _buildWeatherDetail('Humidity',
+                    '${_currentWeather['humidity']}%', Icons.water_drop),
+                _buildWeatherDetail(
+                    'Wind', '${_currentWeather['windSpeed']} km/h', Icons.air),
+                _buildWeatherDetail('UV Index', '${_currentWeather['uvIndex']}',
+                    Icons.wb_sunny),
               ],
             ),
           ],
@@ -350,7 +356,8 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
                       ),
                       const SizedBox(width: 8),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
                           color: _getPriorityColor(advice['priority']),
                           borderRadius: BorderRadius.circular(10),
@@ -457,7 +464,8 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
               onTap: () {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Location updated to Current Location')),
+                  const SnackBar(
+                      content: Text('Location updated to Current Location')),
                 );
               },
             ),
@@ -467,7 +475,8 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
               onTap: () {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Location updated to San Francisco, CA')),
+                  const SnackBar(
+                      content: Text('Location updated to San Francisco, CA')),
                 );
               },
             ),
@@ -477,7 +486,8 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
               onTap: () {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Location updated to Los Angeles, CA')),
+                  const SnackBar(
+                      content: Text('Location updated to Los Angeles, CA')),
                 );
               },
             ),
@@ -490,7 +500,7 @@ class _WeatherAdviceScreenState extends State<WeatherAdviceScreen> {
   Future<void> _refreshWeatherData() async {
     // Simulate API call
     await Future.delayed(const Duration(seconds: 2));
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Weather data updated!')),
     );
