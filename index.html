@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropGuard - Smart Farming Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="material-icons">eco</span>
+                    CropGuard
+                </h1>
+                <nav class="nav">
+                    <button class="nav-btn active" data-screen="home">
+                        <span class="material-icons">home</span>
+                        Home
+                    </button>
+                    <button class="nav-btn" data-screen="detect">
+                        <span class="material-icons">camera_alt</span>
+                        Detect
+                    </button>
+                    <button class="nav-btn" data-screen="community">
+                        <span class="material-icons">people</span>
+                        Community
+                    </button>
+                    <button class="nav-btn" data-screen="weather">
+                        <span class="material-icons">cloud</span>
+                        Weather
+                    </button>
+                    <button class="nav-btn" data-screen="profile">
+                        <span class="material-icons">person</span>
+                        Profile
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Home Screen -->
+            <div id="home-screen" class="screen active">
+                <div class="welcome-banner">
+                    <h2>Welcome to CropGuard</h2>
+                    <p>Protect your crops with AI-powered disease detection and expert advice</p>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-grid">
+                        <div class="action-card" data-action="detect">
+                            <div class="action-icon" style="background-color: #e3f2fd;">
+                                <span class="material-icons" style="color: #1976d2;">camera_alt</span>
+                            </div>
+                            <h4>Scan Plant</h4>
+                            <p>Detect diseases instantly</p>
+                        </div>
+                        <div class="action-card" data-action="weather">
+                            <div class="action-icon" style="background-color: #fff3e0;">
+                                <span class="material-icons" style="color: #f57c00;">cloud</span>
+                            </div>
+                            <h4>Weather Info</h4>
+                            <p>Get farming advice</p>
+                        </div>
+                        <div class="action-card" data-action="community">
+                            <div class="action-icon" style="background-color: #f3e5f5;">
+                                <span class="material-icons" style="color: #7b1fa2;">people</span>
+                            </div>
+                            <h4>Community</h4>
+                            <p>Share & learn tips</p>
+                        </div>
+                        <div class="action-card" data-action="profile">
+                            <div class="action-icon" style="background-color: #e0f2f1;">
+                                <span class="material-icons" style="color: #00695c;">analytics</span>
+                            </div>
+                            <h4>My Garden</h4>
+                            <p>Track your progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-tips">
+                    <h3>Recent Tips</h3>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <span class="material-icons">lightbulb</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Watering Best Practices</h4>
+                            <p>Learn the optimal watering schedule for different crops</p>
+                            <span class="tip-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <span class="material-icons">lightbulb</span>
+                        </div>
+                        <div class="tip-content">
+                            <h4>Pest Prevention Tips</h4>
+                            <p>Natural methods to prevent common garden pests</p>
+                            <span class="tip-time">5 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Detection Screen -->
+            <div id="detect-screen" class="screen">
+                <div class="screen-header">
+                    <h2>Disease Detection</h2>
+                </div>
+
+                <div class="info-banner">
+                    <div class="info-header">
+                        <span class="material-icons">info</span>
+                        <strong>How to use</strong>
+                    </div>
+                    <ol>
+                        <li>Take a clear photo of the affected plant</li>
+                        <li>Make sure the diseased area is visible</li>
+                        <li>Upload and get instant AI analysis</li>
+                        <li>Receive treatment recommendations</li>
+                    </ol>
+                </div>
+
+                <div class="upload-section">
+                    <h3>Upload Plant Image</h3>
+                    <div class="upload-area" id="upload-area">
+                        <span class="material-icons upload-icon">cloud_upload</span>
+                        <p>Tap to upload image</p>
+                        <small>JPG, PNG supported</small>
+                        <input type="file" id="file-input" accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="upload-buttons">
+                        <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+                            <span class="material-icons">camera_alt</span>
+                            Upload Image
+                        </button>
+                        <button class="btn btn-secondary" id="analyze-btn" style="display: none;">
+                            <span class="material-icons">search</span>
+                            Analyze Image
+                        </button>
+                    </div>
+                </div>
+
+                <div id="analysis-results" class="analysis-results" style="display: none;">
+                    <h3>Analysis Results</h3>
+                    <div class="result-card">
+                        <div class="result-header">
+                            <span class="material-icons warning">warning</span>
+                            <div>
+                                <h4>Tomato Late Blight</h4>
+                                <p>Confidence: 87%</p>
+                            </div>
+                        </div>
+                        <p>Late blight is a destructive disease that affects tomato plants, causing dark lesions on leaves and stems.</p>
+                    </div>
+
+                    <div class="treatment-card">
+                        <h4><span class="material-icons">healing</span> Treatment Recommendations</h4>
+                        <ul>
+                            <li>Remove affected leaves immediately</li>
+                            <li>Apply copper-based fungicide every 7-14 days</li>
+                            <li>Improve air circulation around plants</li>
+                            <li>Water at soil level to avoid wetting leaves</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Screen -->
+            <div id="community-screen" class="screen">
+                <div class="screen-header">
+                    <h2>Community</h2>
+                    <button class="btn btn-primary" id="create-post-btn">
+                        <span class="material-icons">add</span>
+                        Create Post
+                    </button>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="all">All Posts</button>
+                    <button class="tab-btn" data-tab="tips">Tips</button>
+                    <button class="tab-btn" data-tab="problems">Problems</button>
+                </div>
+
+                <div class="posts-container">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-avatar">S</div>
+                            <div class="user-info">
+                                <h4>GreenThumb_Sarah</h4>
+                                <span>2 hours ago</span>
+                            </div>
+                            <span class="material-icons post-type tip">lightbulb</span>
+                        </div>
+                        <p>Just discovered an amazing natural pesticide recipe! Mix neem oil with soapy water and spray on affected plants. Works wonders for aphids! 🌱</p>
+                        <div class="post-tags">
+                            <span class="tag">#pest-control</span>
+                            <span class="tag">#organic</span>
+                            <span class="tag">#tips</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">
+                                <span class="material-icons">thumb_up</span>
+                                23
+                            </button>
+                            <button class="action-btn">
+                                <span class="material-icons">comment</span>
+                                5
+                            </button>
+                            <button class="action-btn">
+                                <span class="material-icons">share</span>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-avatar">J</div>
+                            <div class="user-info">
+                                <h4>FarmMaster_John</h4>
+                                <span>4 hours ago</span>
+                            </div>
+                            <span class="material-icons post-type problem">help</span>
+                        </div>
+                        <p>Help needed! My tomato plants are showing yellow spots on leaves. Has anyone seen this before? Location: California, Zone 9b</p>
+                        <div class="post-tags">
+                            <span class="tag">#tomatoes</span>
+                            <span class="tag">#disease</span>
+                            <span class="tag">#help-needed</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">
+                                <span class="material-icons">thumb_up</span>
+                                8
+                            </button>
+                            <button class="action-btn">
+                                <span class="material-icons">comment</span>
+                                12
+                            </button>
+                            <button class="action-btn">
+                                <span class="material-icons">share</span>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Screen -->
+            <div id="weather-screen" class="screen">
+                <div class="screen-header">
+                    <h2>Weather & Advice</h2>
+                    <button class="btn btn-secondary">
+                        <span class="material-icons">location_on</span>
+                        Location
+                    </button>
+                </div>
+
+                <div class="weather-card">
+                    <div class="weather-location">
+                        <span class="material-icons">location_on</span>
+                        San Francisco, CA
+                    </div>
+                    <div class="weather-main">
+                        <div class="temperature">24°C</div>
+                        <div class="condition">
+                            <span class="material-icons weather-icon">wb_cloudy</span>
+                            <span>Partly Cloudy</span>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span class="material-icons">water_drop</span>
+                            <div>
+                                <strong>65%</strong>
+                                <small>Humidity</small>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="material-icons">air</span>
+                            <div>
+                                <strong>8 km/h</strong>
+                                <small>Wind</small>
+                            </div>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="material-icons">wb_sunny</span>
+                            <div>
+                                <strong>UV 6</strong>
+                                <small>UV Index</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast-section">
+                    <h3>5-Day Forecast</h3>
+                    <div class="forecast-container">
+                        <div class="forecast-item">
+                            <div class="day">Today</div>
+                            <span class="material-icons">wb_cloudy</span>
+                            <div class="temps">26°/18°</div>
+                            <div class="rain">20%</div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="day">Tomorrow</div>
+                            <span class="material-icons">wb_sunny</span>
+                            <div class="temps">28°/20°</div>
+                            <div class="rain">5%</div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="day">Wed</div>
+                            <span class="material-icons">grain</span>
+                            <div class="temps">22°/16°</div>
+                            <div class="rain">85%</div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="day">Thu</div>
+                            <span class="material-icons">cloud</span>
+                            <div class="temps">25°/19°</div>
+                            <div class="rain">30%</div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="day">Fri</div>
+                            <span class="material-icons">wb_sunny</span>
+                            <div class="temps">29°/22°</div>
+                            <div class="rain">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="advice-section">
+                    <h3>Farming Advice</h3>
+                    <div class="advice-card high-priority">
+                        <div class="advice-icon">
+                            <span class="material-icons">water_drop</span>
+                        </div>
+                        <div class="advice-content">
+                            <h4>Watering Recommendation <span class="priority">HIGH</span></h4>
+                            <p>Reduce watering today due to expected rain. Check soil moisture before next watering.</p>
+                        </div>
+                    </div>
+                    <div class="advice-card medium-priority">
+                        <div class="advice-icon">
+                            <span class="material-icons">bug_report</span>
+                        </div>
+                        <div class="advice-content">
+                            <h4>Pest Alert <span class="priority">MEDIUM</span></h4>
+                            <p>High humidity conditions favor aphid development. Monitor plants closely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Screen -->
+            <div id="profile-screen" class="screen">
+                <div class="screen-header">
+                    <h2>Profile</h2>
+                    <button class="btn btn-secondary">
+                        <span class="material-icons">settings</span>
+                        Settings
+                    </button>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">S</div>
+                        <div class="profile-info">
+                            <h3>Sarah Johnson</h3>
+                            <p>sarah.j@email.com</p>
+                            <div class="location">
+                                <span class="material-icons">location_on</span>
+                                San Francisco, CA
+                            </div>
+                        </div>
+                        <button class="btn btn-outline">
+                            <span class="material-icons">edit</span>
+                            Edit
+                        </button>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail">
+                            <strong>500 sq ft</strong>
+                            <small>Garden Size</small>
+                        </div>
+                        <div class="detail">
+                            <strong>Intermediate</strong>
+                            <small>Experience</small>
+                        </div>
+                        <div class="detail">
+                            <strong>March 2024</strong>
+                            <small>Member Since</small>
+                        </div>
+                    </div>
+                    <div class="specialties">
+                        <strong>Specialties</strong>
+                        <div class="specialty-tags">
+                            <span class="specialty-tag">Tomatoes</span>
+                            <span class="specialty-tag">Herbs</span>
+                            <span class="specialty-tag">Peppers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>Garden Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="material-icons">camera_alt</span>
+                            <strong>47</strong>
+                            <small>Plants Scanned</small>
+                        </div>
+                        <div class="stat-card">
+                            <span class="material-icons">bug_report</span>
+                            <strong>12</strong>
+                            <small>Diseases Detected</small>
+                        </div>
+                        <div class="stat-card">
+                            <span class="material-icons">lightbulb</span>
+                            <strong>8</strong>
+                            <small>Tips Shared</small>
+                        </div>
+                        <div class="stat-card">
+                            <span class="material-icons">people</span>
+                            <strong>23</strong>
+                            <small>Community Helps</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievements-section">
+                    <h3>Achievements</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card earned">
+                            <span class="material-icons">healing</span>
+                            <h4>Plant Doctor</h4>
+                            <p>Helped identify 10+ diseases</p>
+                        </div>
+                        <div class="achievement-card earned">
+                            <span class="material-icons">favorite</span>
+                            <h4>Community Helper</h4>
+                            <p>Received 50+ likes on tips</p>
+                        </div>
+                        <div class="achievement-card">
+                            <span class="material-icons">eco</span>
+                            <h4>Green Thumb</h4>
+                            <p>Shared 20+ successful tips</p>
+                        </div>
+                        <div class="achievement-card">
+                            <span class="material-icons">cloud</span>
+                            <h4>Weather Watcher</h4>
+                            <p>Used weather advice 30+ times</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

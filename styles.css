@@ -1,0 +1,934 @@
+/* CropGuard Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.nav-btn.active {
+    background: rgba(255,255,255,0.2);
+    font-weight: 600;
+}
+
+/* Main Content */
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.screen-header h2 {
+    font-size: 2rem;
+    color: #2e7d32;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: #2e7d32;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1b5e20;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #1976d2;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #1565c0;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+}
+
+.btn-outline:hover {
+    background: #2e7d32;
+    color: white;
+}
+
+/* Home Screen */
+.welcome-banner {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.welcome-banner h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-banner p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.quick-actions {
+    margin-bottom: 2rem;
+}
+
+.quick-actions h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.action-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.action-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.action-card .action-icon:nth-child(1) {
+    background-color: #e3f2fd;
+}
+
+.action-card .action-icon:nth-child(1) .material-icons {
+    color: #1976d2;
+}
+
+.action-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.action-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Recent Tips */
+.recent-tips h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.tip-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.tip-icon {
+    background: #2e7d32;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tip-content h4 {
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.tip-content p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.tip-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Disease Detection Screen */
+.info-banner {
+    background: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.info-banner ol {
+    margin-left: 1rem;
+    color: #333;
+}
+
+.upload-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.upload-area:hover {
+    border-color: #2e7d32;
+    background: #f1f8e9;
+}
+
+.upload-icon {
+    font-size: 4rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.upload-area p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.upload-area small {
+    color: #999;
+}
+
+.upload-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Analysis Results */
+.analysis-results {
+    margin-top: 2rem;
+}
+
+.analysis-results h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.result-card, .treatment-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.result-header .material-icons.warning {
+    color: #ff9800;
+    font-size: 2rem;
+}
+
+.result-header h4 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.result-header p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.treatment-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.treatment-card ul {
+    margin-left: 1rem;
+}
+
+.treatment-card li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Community Screen */
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    color: #2e7d32;
+    border-bottom-color: #2e7d32;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.post-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2e7d32;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.user-info h4 {
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.user-info span {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.post-type {
+    margin-left: auto;
+}
+
+.post-type.tip {
+    color: #ff9800;
+}
+
+.post-type.problem {
+    color: #f44336;
+}
+
+.post-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: #f5f5f5;
+    color: #2e7d32;
+}
+
+/* Weather Screen */
+.weather-card {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.weather-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.weather-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.condition {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.weather-icon {
+    font-size: 3rem;
+    opacity: 0.8;
+}
+
+.weather-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.weather-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.weather-detail strong {
+    display: block;
+    font-size: 1.1rem;
+}
+
+.weather-detail small {
+    display: block;
+    opacity: 0.8;
+    font-size: 0.8rem;
+}
+
+/* Forecast */
+.forecast-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.forecast-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.forecast-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 100px;
+    flex-shrink: 0;
+}
+
+.forecast-item .day {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.forecast-item .material-icons {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.forecast-item .temps {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.forecast-item .rain {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Advice Section */
+.advice-section {
+    margin-top: 2rem;
+}
+
+.advice-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.advice-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.advice-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.high-priority .advice-icon {
+    background: #ffebee;
+}
+
+.high-priority .advice-icon .material-icons {
+    color: #f44336;
+}
+
+.medium-priority .advice-icon {
+    background: #fff3e0;
+}
+
+.medium-priority .advice-icon .material-icons {
+    color: #ff9800;
+}
+
+.advice-content h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.priority {
+    background: #f44336;
+    color: white;
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.medium-priority .priority {
+    background: #ff9800;
+}
+
+/* Profile Screen */
+.profile-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #2e7d32;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.profile-info p {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.profile-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.detail strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.detail small {
+    display: block;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.specialties {
+    color: #333;
+}
+
+.specialties strong {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.specialty-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.specialty-tag {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Stats Section */
+.stats-section, .achievements-section {
+    margin-bottom: 2rem;
+}
+
+.stats-section h3, .achievements-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-card .material-icons {
+    font-size: 2rem;
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card small {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Achievements */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.achievement-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.achievement-card.earned {
+    border: 2px solid #2e7d32;
+}
+
+.achievement-card:not(.earned) {
+    opacity: 0.6;
+    background: #f9f9f9;
+}
+
+.achievement-card .material-icons {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-card.earned .material-icons {
+    color: #2e7d32;
+}
+
+.achievement-card:not(.earned) .material-icons {
+    color: #ccc;
+}
+
+.achievement-card h4 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.achievement-card p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        gap: 0.5rem;
+    }
+    
+    .nav-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .nav-btn span {
+        display: none;
+    }
+    
+    .action-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .weather-main {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .weather-details {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .forecast-container {
+        gap: 0.5rem;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-details {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
