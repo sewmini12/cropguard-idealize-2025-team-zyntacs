@@ -64,16 +64,29 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const ProfileScreen(),
   ];
 
+  // Debug: Ensure list size matches navigation items
+  @override
+  void initState() {
+    super.initState();
+    assert(_screens.length == 6, 'Screens list must have exactly 6 items');
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Defensive programming: ensure index is within bounds
+    final safeIndex = _currentIndex.clamp(0, _screens.length - 1);
+
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: _screens[safeIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: safeIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          // Only update if index is valid
+          if (index >= 0 && index < _screens.length) {
+            setState(() {
+              _currentIndex = index;
+            });
+          }
         },
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).primaryColor,

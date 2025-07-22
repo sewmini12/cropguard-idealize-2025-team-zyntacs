@@ -1,4 +1,4 @@
-flutter build apkimport 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'dart:io';
 
 class DiseaseDetectionScreen extends StatefulWidget {
