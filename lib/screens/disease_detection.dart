@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+flutter build apkimport 'package:flutter/material.dart';
 import 'dart:io';
 
 class DiseaseDetectionScreen extends StatefulWidget {
@@ -31,9 +31,9 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1),
+                color: Colors.blue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
               ),
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -357,7 +357,8 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
           'disease': 'Tomato Leaf Blight',
           'confidence': 87,
           'severity': 'Medium',
-          'description': 'Early blight is a common fungal disease that affects tomato plants. It typically appears as dark spots with concentric rings on older leaves.',
+          'description':
+              'Early blight is a common fungal disease that affects tomato plants. It typically appears as dark spots with concentric rings on older leaves.',
           'treatments': [
             'Remove affected leaves immediately',
             'Apply copper-based fungicide every 7-14 days',

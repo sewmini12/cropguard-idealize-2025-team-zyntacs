@@ -18,7 +18,8 @@ class _CommunityScreenState extends State<CommunityScreen>
       'author': 'GreenThumb_Sarah',
       'avatar': 'S',
       'time': '2 hours ago',
-      'content': 'Just discovered an amazing natural pesticide recipe! Mix neem oil with soapy water and spray on affected plants. Works wonders for aphids! 🌱',
+      'content':
+          'Just discovered an amazing natural pesticide recipe! Mix neem oil with soapy water and spray on affected plants. Works wonders for aphids! 🌱',
       'likes': 23,
       'comments': 5,
       'tags': ['pest-control', 'organic', 'tips'],
@@ -29,7 +30,8 @@ class _CommunityScreenState extends State<CommunityScreen>
       'author': 'FarmMaster_John',
       'avatar': 'J',
       'time': '4 hours ago',
-      'content': 'Help needed! My tomato plants are showing yellow spots on leaves. I\'ve attached photos. Has anyone seen this before? Location: California, Zone 9b',
+      'content':
+          'Help needed! My tomato plants are showing yellow spots on leaves. I\'ve attached photos. Has anyone seen this before? Location: California, Zone 9b',
       'likes': 8,
       'comments': 12,
       'tags': ['tomatoes', 'disease', 'help-needed'],
@@ -40,7 +42,8 @@ class _CommunityScreenState extends State<CommunityScreen>
       'author': 'OrganicGuru',
       'avatar': 'O',
       'time': '6 hours ago',
-      'content': 'Companion planting update: My basil and tomatoes are thriving together! The basil seems to be keeping the pests away naturally. Highly recommend this combination! 🍅🌿',
+      'content':
+          'Companion planting update: My basil and tomatoes are thriving together! The basil seems to be keeping the pests away naturally. Highly recommend this combination! 🍅🌿',
       'likes': 31,
       'comments': 8,
       'tags': ['companion-planting', 'organic', 'success-story'],
@@ -51,7 +54,8 @@ class _CommunityScreenState extends State<CommunityScreen>
       'author': 'NewbieFarmer',
       'avatar': 'N',
       'time': '1 day ago',
-      'content': 'First time growing peppers and they\'re flowering! When should I expect fruits? Any care tips for the flowering stage? So excited! 🌶️',
+      'content':
+          'First time growing peppers and they\'re flowering! When should I expect fruits? Any care tips for the flowering stage? So excited! 🌶️',
       'likes': 15,
       'comments': 9,
       'tags': ['peppers', 'beginner', 'flowering'],
@@ -95,8 +99,10 @@ class _CommunityScreenState extends State<CommunityScreen>
         controller: _tabController,
         children: [
           _buildPostsList(_posts),
-          _buildPostsList(_posts.where((post) => post['type'] == 'tip').toList()),
-          _buildPostsList(_posts.where((post) => post['type'] == 'problem').toList()),
+          _buildPostsList(
+              _posts.where((post) => post['type'] == 'tip').toList()),
+          _buildPostsList(
+              _posts.where((post) => post['type'] == 'problem').toList()),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -189,9 +195,11 @@ class _CommunityScreenState extends State<CommunityScreen>
               runSpacing: 4,
               children: (post['tags'] as List<String>).map((tag) {
                 return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                    color:
+                        Theme.of(context).primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
@@ -301,9 +309,12 @@ class _CommunityScreenState extends State<CommunityScreen>
               Expanded(
                 child: ListView(
                   children: [
-                    _buildComment('PlantExpert', '2h ago', 'This looks like early blight. Try copper fungicide!'),
-                    _buildComment('GardenGuru', '1h ago', 'I had the same issue last year. Good drainage helped.'),
-                    _buildComment('TomatoLover', '30m ago', 'Thanks for sharing! Very helpful tips.'),
+                    _buildComment('PlantExpert', '2h ago',
+                        'This looks like early blight. Try copper fungicide!'),
+                    _buildComment('GardenGuru', '1h ago',
+                        'I had the same issue last year. Good drainage helped.'),
+                    _buildComment('TomatoLover', '30m ago',
+                        'Thanks for sharing! Very helpful tips.'),
                   ],
                 ),
               ),
@@ -311,8 +322,8 @@ class _CommunityScreenState extends State<CommunityScreen>
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      decoration: const InputDecoration(
+                    child: const TextField(
+                      decoration: InputDecoration(
                         hintText: 'Add a comment...',
                         border: OutlineInputBorder(),
                       ),
@@ -416,8 +427,10 @@ class _CommunityScreenState extends State<CommunityScreen>
                     value: 'tip',
                     items: const [
                       DropdownMenuItem(value: 'tip', child: Text('Tip')),
-                      DropdownMenuItem(value: 'problem', child: Text('Problem')),
-                      DropdownMenuItem(value: 'question', child: Text('Question')),
+                      DropdownMenuItem(
+                          value: 'problem', child: Text('Problem')),
+                      DropdownMenuItem(
+                          value: 'question', child: Text('Question')),
                     ],
                     onChanged: (value) {},
                   ),
