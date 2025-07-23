@@ -90,13 +90,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       'title': 'Green Thumb',
       'description': 'Shared 20+ successful tips',
       'icon': Icons.eco,
-      'earned': false,
+      'earned': true,
     },
     {
       'title': 'Weather Watcher',
       'description': 'Used weather advice 30+ times',
       'icon': Icons.cloud,
-      'earned': false,
+      'earned': true,
     },
   ];
 
