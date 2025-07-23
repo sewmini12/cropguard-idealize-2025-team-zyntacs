@@ -4,6 +4,7 @@ import 'screens/disease_detection.dart';
 import 'screens/community.dart';
 import 'screens/weather_advice.dart';
 import 'screens/profile.dart';
+import 'screens/ai_assistant_screen.dart';
 import 'screens/auth/splash_screen.dart';
 
 void main() {
@@ -39,6 +40,7 @@ class CropGuardApp extends StatelessWidget {
         '/community': (context) => const CommunityScreen(),
         '/weather-advice': (context) => const WeatherAdviceScreen(),
         '/profile': (context) => const ProfileScreen(),
+        '/ai-assistant': (context) => const AIAssistantScreen(),
       },
     );
   }
@@ -59,6 +61,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const DiseaseDetectionScreen(),
     const CommunityScreen(),
     const WeatherAdviceScreen(),
+    const AIAssistantScreen(),
     const ProfileScreen(),
   ];
 
@@ -66,7 +69,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   void initState() {
     super.initState();
-    assert(_screens.length == 5, 'Screens list must have exactly 5 items');
+    assert(_screens.length == 6, 'Screens list must have exactly 6 items');
   }
 
   @override
@@ -105,6 +108,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.cloud),
             label: 'Weather',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.smart_toy),
+            label: 'AI Assistant',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

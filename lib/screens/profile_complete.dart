@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'ai_assistant_screen.dart';
-import 'disease_detection.dart';
-import 'weather_advice.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -1134,34 +1131,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Icons.camera_alt,
                   'Disease Detection',
                   'Scan plants to identify diseases',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const DiseaseDetectionScreen()),
-                    );
-                  },
                 ),
                 _buildFeatureItem(
                   Icons.cloud,
                   'Weather Advice',
                   'Get weather-based gardening tips',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const WeatherAdviceScreen()),
-                    );
-                  },
                 ),
                 _buildFeatureItem(
                   Icons.smart_toy,
                   'AI Assistant',
                   'Chat with our farming assistant',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AIAssistantScreen()),
-                    );
-                  },
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -1181,65 +1160,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildFeatureItem(IconData icon, String title, String description, {VoidCallback? onTap}) {
+  Widget _buildFeatureItem(IconData icon, String title, String description) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.grey.withAlpha(51),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor.withAlpha(25),
+              borderRadius: BorderRadius.circular(8),
             ),
-            borderRadius: BorderRadius.circular(12),
+            child: Icon(
+              icon,
+              color: Theme.of(context).primaryColor,
+              size: 24,
+            ),
           ),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withAlpha(25),
-                  borderRadius: BorderRadius.circular(8),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-                child: Icon(
-                  icon,
-                  color: Theme.of(context).primaryColor,
-                  size: 24,
+                Text(
+                  description,
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 14,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      description,
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              if (onTap != null)
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: Colors.grey[400],
-                ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
