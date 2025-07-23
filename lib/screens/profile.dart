@@ -73,6 +73,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
     },
   ];
 
+  final List<Map<String, dynamic>> _notifications = [
+    {
+      'id': 1,
+      'type': 'disease_outbreak',
+      'title': 'Disease Alert: Late Blight in Your Area',
+      'message': 'Late blight has been detected in tomato crops within 5km of your location. Check your plants and apply preventive treatments.',
+      'severity': 'high',
+      'timestamp': DateTime.now().subtract(const Duration(hours: 2)),
+      'location': 'San Francisco Bay Area',
+      'crop': 'Tomatoes',
+      'actionRequired': true,
+      'isRead': false,
+    },
+    {
+      'id': 2,
+      'type': 'pest_warning',
+      'title': 'Pest Alert: Aphid Infestation Reported',
+      'message': 'Multiple farmers in your region have reported aphid infestations on pepper plants. Monitor your crops closely.',
+      'severity': 'medium',
+      'timestamp': DateTime.now().subtract(const Duration(hours: 6)),
+      'location': 'San Francisco Bay Area',
+      'crop': 'Peppers',
+      'actionRequired': true,
+      'isRead': false,
+    },
+    {
+      'id': 3,
+      'type': 'weather_warning',
+      'title': 'Weather Alert: Heavy Rain Expected',
+      'message': 'Heavy rainfall expected in the next 48 hours. Protect sensitive crops and ensure proper drainage.',
+      'severity': 'medium',
+      'timestamp': DateTime.now().subtract(const Duration(hours: 12)),
+      'location': 'San Francisco Bay Area',
+      'crop': 'All Crops',
+      'actionRequired': true,
+      'isRead': true,
+    },
+    {
+      'id': 4,
+      'type': 'community_tip',
+      'title': 'Seasonal Tip: Fall Planting Guide',
+      'message': 'It\'s the perfect time to start your fall garden. Consider planting cool-season crops like lettuce and broccoli.',
+      'severity': 'low',
+      'timestamp': DateTime.now().subtract(const Duration(days: 1)),
+      'location': 'San Francisco Bay Area',
+      'crop': 'Cool Season Crops',
+      'actionRequired': false,
+      'isRead': true,
+    },
+  ];
+
   final List<Map<String, dynamic>> _achievements = [
     {
       'title': 'Plant Doctor',
@@ -124,6 +175,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             // Only show these sections if authenticated
             if (_isAuthenticated) ...[
+              const SizedBox(height: 24),
+              // Disease & Alert Notifications
+              _buildNotificationsSection(),
               const SizedBox(height: 24),
               // Garden Stats
               _buildGardenStats(),
@@ -296,6 +350,356 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildNotificationsSection() {
+    final unreadCount = _notifications.where((n) => !n['isRead']).length;
+    
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                const Text(
+                  'Alerts & Notifications',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (unreadCount > 0) ...[
+                  const SizedBox(width: 8),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      '$unreadCount',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+            TextButton(
+              onPressed: _showAllNotifications,
+              child: const Text('View All'),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        ..._notifications.take(3).map((notification) => _buildNotificationCard(notification)),
+        if (_notifications.length > 3) ...[
+          const SizedBox(height: 8),
+          Center(
+            child: TextButton(
+              onPressed: _showAllNotifications,
+              child: Text('View ${_notifications.length - 3} more notifications'),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildNotificationCard(Map<String, dynamic> notification) {
+    Color severityColor;
+    IconData severityIcon;
+    
+    switch (notification['severity']) {
+      case 'high':
+        severityColor = Colors.red;
+        severityIcon = Icons.warning;
+        break;
+      case 'medium':
+        severityColor = Colors.orange;
+        severityIcon = Icons.info;
+        break;
+      default:
+        severityColor = Colors.blue;
+        severityIcon = Icons.lightbulb;
+    }
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Card(
+        elevation: notification['isRead'] ? 1 : 3,
+        color: notification['isRead'] ? null : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: notification['isRead'] ? Colors.transparent : severityColor.withOpacity(0.3),
+            width: notification['isRead'] ? 0 : 1,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: severityColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      severityIcon,
+                      color: severityColor,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                notification['title'],
+                                style: TextStyle(
+                                  fontWeight: notification['isRead'] ? FontWeight.w500 : FontWeight.bold,
+                                  fontSize: 16,
+                                  color: notification['isRead'] ? Colors.grey[700] : Colors.black,
+                                ),
+                              ),
+                            ),
+                            if (!notification['isRead'])
+                              Container(
+                                width: 8,
+                                height: 8,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blue,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          notification['message'],
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Icon(Icons.location_on, size: 14, color: Colors.grey[500]),
+                            const SizedBox(width: 4),
+                            Text(
+                              notification['location'],
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Icon(Icons.eco, size: 14, color: Colors.grey[500]),
+                            const SizedBox(width: 4),
+                            Text(
+                              notification['crop'],
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              _formatNotificationTime(notification['timestamp']),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                          ],
+                        ),
+                        if (notification['actionRequired']) ...[
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: OutlinedButton.icon(
+                                  onPressed: () => _handleNotificationAction(notification),
+                                  icon: const Icon(Icons.visibility, size: 16),
+                                  label: const Text('View Details'),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(vertical: 8),
+                                    textStyle: const TextStyle(fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: ElevatedButton.icon(
+                                  onPressed: () => _handleNotificationAction(notification),
+                                  icon: const Icon(Icons.check, size: 16),
+                                  label: const Text('Take Action'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: severityColor,
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(vertical: 8),
+                                    textStyle: const TextStyle(fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _formatNotificationTime(DateTime timestamp) {
+    final now = DateTime.now();
+    final difference = now.difference(timestamp);
+    
+    if (difference.inMinutes < 60) {
+      return '${difference.inMinutes}m ago';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours}h ago';
+    } else {
+      return '${difference.inDays}d ago';
+    }
+  }
+
+  void _handleNotificationAction(Map<String, dynamic> notification) {
+    // Mark as read
+    setState(() {
+      notification['isRead'] = true;
+    });
+
+    String actionMessage;
+    switch (notification['type']) {
+      case 'disease_outbreak':
+        actionMessage = 'Disease prevention guide opened. Check your ${notification['crop'].toLowerCase()} plants and apply recommended treatments.';
+        break;
+      case 'pest_warning':
+        actionMessage = 'Pest management guide opened. Monitor your ${notification['crop'].toLowerCase()} for early signs of infestation.';
+        break;
+      case 'weather_warning':
+        actionMessage = 'Weather protection tips opened. Secure your crops and equipment.';
+        break;
+      default:
+        actionMessage = 'Notification details opened.';
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              notification['type'] == 'disease_outbreak' ? Icons.healing :
+              notification['type'] == 'pest_warning' ? Icons.bug_report : Icons.info,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 8),
+            Expanded(child: Text(actionMessage)),
+          ],
+        ),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        duration: const Duration(seconds: 4),
+      ),
+    );
+  }
+
+  void _showAllNotifications() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.8,
+        maxChildSize: 0.95,
+        minChildSize: 0.5,
+        expand: false,
+        builder: (context, scrollController) => Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'All Notifications',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            for (var notification in _notifications) {
+                              notification['isRead'] = true;
+                            }
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Mark All Read'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                controller: scrollController,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemCount: _notifications.length,
+                itemBuilder: (context, index) {
+                  return _buildNotificationCard(_notifications[index]);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
