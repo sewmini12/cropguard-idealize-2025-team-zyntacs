@@ -46,6 +46,50 @@ class CropGuardApp extends StatelessWidget {
   }
 }
 
+class IconWithCircle extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final Color backgroundColor;
+  final double size;
+
+  const IconWithCircle({
+    super.key,
+    required this.icon,
+    this.iconColor = Colors.green,
+    this.backgroundColor = Colors.grey,
+    this.size = 24,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          colors: [Colors.white, Colors.grey.shade300],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            offset: Offset(2, 2),
+          ),
+        ],
+      ),
+      alignment: Alignment.center,
+      child: Icon(
+        icon,
+        size: size,
+        color: iconColor,
+      ),
+    );
+  }
+}
+
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
 
@@ -65,7 +109,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const ProfileScreen(),
   ];
 
-  // Debug: Ensure list size matches navigation items
   @override
   void initState() {
     super.initState();
@@ -74,7 +117,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Defensive programming: ensure index is within bounds
     final safeIndex = _currentIndex.clamp(0, _screens.length - 1);
 
     return Scaffold(
@@ -82,7 +124,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: safeIndex,
         onTap: (index) {
-          // Only update if index is valid
           if (index >= 0 && index < _screens.length) {
             setState(() {
               _currentIndex = index;
@@ -90,31 +131,31 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           }
         },
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Theme.of(context).primaryColor,
+        selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: IconWithCircle(icon: Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt),
-            label: 'Detect Disease',
+            icon: IconWithCircle(icon: Icons.camera_alt),
+            label: 'Detect',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: IconWithCircle(icon: Icons.people),
             label: 'Community',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cloud),
+            icon: IconWithCircle(icon: Icons.cloud),
             label: 'Weather',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.smart_toy),
-            label: 'AI Assistant',
+            icon: IconWithCircle(icon: Icons.smart_toy),
+            label: 'AI',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: IconWithCircle(icon: Icons.person),
             label: 'Profile',
           ),
         ],
