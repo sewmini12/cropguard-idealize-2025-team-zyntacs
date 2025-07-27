@@ -23,43 +23,38 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
+
+
+
+
+
+  body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Instructions
+
+
+
+
+
+
+
              Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Theme.of(context).primaryColor,
-                    Colors.green.shade700,
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
+              
               child: Row(
                 children: [
+
+
+
                   // Detection Image
                   Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
+                    width: 150,
+                    height: 200,
+                
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Image.asset(
@@ -73,27 +68,32 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
                             ),
                             child: const Icon(
                               Icons.medical_services,
-                              size: 40,
-                              color: Colors.green,
+                              size: 60,
+                              color: Color.fromARGB(255, 166, 210, 167),
                             ),
                           );
                         },
                       ),
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 1),
+
+
+
+
+
                   // Text Content
-                  Expanded(
+                 Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                        
                         Text(
-                          'identify and cure plant diseases with crop guard',
+                          'identify and cure plant diseases with cropguard',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 22,
                             fontWeight: FontWeight.w600,
-                            color: Colors.green.shade100,
+                            color: const Color.fromARGB(255, 37, 107, 2),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -104,42 +104,426 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
                 ],
               ),
             ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             const SizedBox(height: 24),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.blue.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.info, color: Colors.blue),
-                      SizedBox(width: 8),
-                      Text(
-                        'How to use',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    '1. Take a clear photo of the affected plant\n'
-                    '2. Make sure the diseased area is visible\n'
-                    '3. Upload and get instant AI analysis\n'
-                    '4. Receive treatment recommendations',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
+
+
+
+
+
+
+
+
+
+
+      Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(16),
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [Colors.green.shade200.withOpacity(0.4), Colors.green.shade400.withOpacity(0.4)],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: Colors.green.shade100.withOpacity(0.5)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.green.withOpacity(0.2),
+        blurRadius: 12,
+        offset: const Offset(0, 6),
+      ),
+    ],
+  ),
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      /// TEXT SECTION (Left)
+      Expanded(
+        flex: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              'Step 01',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black87,
               ),
             ),
+            SizedBox(height: 8),
+            Text(
+              'Open cropguard and tap the camera button in the Plant Health tab.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      const SizedBox(width: 16),
+
+      /// IMAGE SECTION (Right)
+      Expanded(
+        flex: 3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.asset(
+            'assets/images/step1.webp',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+      
+
+
+const SizedBox(height: 24),
+
+
+
+
+
+            // Duplicate How to Use Section
+            Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(16),
+  margin: const EdgeInsets.only(top: 24),
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Colors.green.shade200.withOpacity(0.4),
+        Colors.green.shade400.withOpacity(0.4),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: Colors.green.shade100.withOpacity(0.5)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.green.withOpacity(0.2),
+        blurRadius: 12,
+        offset: const Offset(0, 6),
+      ),
+    ],
+  ),
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      /// TEXT SECTION (Left)
+      Expanded(
+        flex: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              'Step 02',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Place your sick plant at the center of the plant image.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      const SizedBox(width: 16),
+
+      /// IMAGE SECTION (Right)
+      Expanded(
+        flex: 3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.asset(
+            'assets/images/step2.webp',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+
+
+
+const SizedBox(height: 24),
+
+            // Third How to Use Section
+            
+            
+            
+            
+            
+            Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(16),
+  margin: const EdgeInsets.only(top: 24),
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Colors.green.shade200.withOpacity(0.4),
+        Colors.green.shade400.withOpacity(0.4),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: Colors.green.shade100.withOpacity(0.5)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.green.withOpacity(0.2),
+        blurRadius: 12,
+        offset: const Offset(0, 6),
+      ),
+    ],
+  ),
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      /// TEXT SECTION (Left)
+      Expanded(
+        flex: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              'Step 03',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Snap photos of the diseased parts of a leaf or multiple leaves.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      const SizedBox(width: 16),
+
+      /// IMAGE SECTION (Right)
+      Expanded(
+        flex: 3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.asset(
+            'assets/images/step3.webp',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+ 
+            const SizedBox(height: 24),
+
+            // Fourth How to Use Section
+            
+            
+            
+            
+            
+            
+            
+          Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(16),
+  margin: const EdgeInsets.only(top: 24),
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Colors.green.shade200.withOpacity(0.4),
+        Colors.green.shade400.withOpacity(0.4),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: Colors.green.shade100.withOpacity(0.5)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.green.withOpacity(0.2),
+        blurRadius: 12,
+        offset: const Offset(0, 6),
+      ),
+    ],
+  ),
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      /// TEXT SECTION (Left)
+      Expanded(
+        flex: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              'Step 04',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Answer a couple of questions from our bot to get accurate results.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      const SizedBox(width: 16),
+
+      /// IMAGE SECTION (Right)
+      Expanded(
+        flex: 3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.asset(
+            'assets/images/step4.webp',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+
+
+            const SizedBox(height: 24),
+
+
+
+
+
+           Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(16),
+  margin: const EdgeInsets.only(top: 24),
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Colors.green.shade200.withOpacity(0.4),
+        Colors.green.shade400.withOpacity(0.4),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(24),
+    border: Border.all(color: Colors.green.shade100.withOpacity(0.5)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.green.withOpacity(0.2),
+        blurRadius: 12,
+        offset: const Offset(0, 6),
+      ),
+    ],
+  ),
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      /// TEXT SECTION (Left)
+      Expanded(
+        flex: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              'Step 05',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'That’s it! Now you know the issue and how to cure it.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      const SizedBox(width: 16),
+
+      /// IMAGE SECTION (Right)
+      Expanded(
+        flex: 3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.asset(
+            'assets/images/step5.webp',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+
+
+
+
+
+
+
+
+
+
+
             const SizedBox(height: 24),
 
             // Image Upload Section
