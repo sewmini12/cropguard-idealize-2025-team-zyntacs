@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 400),
                   Text(
                     'Protect your crops with AI-powered disease detection and expert advice',
                     style: TextStyle(
@@ -63,8 +63,9 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 16),
-            
+
             Row(
               children: [
                 Expanded(
@@ -73,6 +74,7 @@ class HomeScreen extends StatelessWidget {
                     title: 'Scan Plant',
                     description: 'Detect diseases instantly',
                     color: Colors.blue,
+                    backgroundImage: 'assets/bg_images/disease.png',
                     onTap: () {
                       Navigator.pushNamed(context, '/disease-detection');
                     },
@@ -85,6 +87,7 @@ class HomeScreen extends StatelessWidget {
                     title: 'Weather Info',
                     description: 'Get farming advice',
                     color: Colors.orange,
+                    backgroundImage: 'assets/bg_images/weather.png',
                     onTap: () {
                       Navigator.pushNamed(context, '/weather-advice');
                     },
@@ -92,8 +95,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+
             const SizedBox(height: 16),
-            
+
             Row(
               children: [
                 Expanded(
@@ -102,6 +106,7 @@ class HomeScreen extends StatelessWidget {
                     title: 'Community',
                     description: 'Share & learn tips',
                     color: Colors.purple,
+                    backgroundImage: 'assets/bg_images/community.png',
                     onTap: () {
                       Navigator.pushNamed(context, '/community');
                     },
@@ -114,6 +119,7 @@ class HomeScreen extends StatelessWidget {
                     title: 'My Garden',
                     description: 'Track your progress',
                     color: Colors.teal,
+                    backgroundImage: 'assets/bg_images/records.png',
                     onTap: () {
                       Navigator.pushNamed(context, '/profile');
                     },
@@ -121,6 +127,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+
             const SizedBox(height: 24),
 
             // Recent Tips Section
@@ -131,8 +138,9 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 16),
-            
+
             ...List.generate(3, (index) {
               final tips = [
                 {
@@ -151,7 +159,7 @@ class HomeScreen extends StatelessWidget {
                   'time': '1 day ago',
                 },
               ];
-              
+
               return Card(
                 margin: const EdgeInsets.only(bottom: 12),
                 child: ListTile(
@@ -191,6 +199,7 @@ class _QuickActionCard extends StatelessWidget {
   final String description;
   final Color color;
   final VoidCallback onTap;
+  final String? backgroundImage;
 
   const _QuickActionCard({
     required this.icon,
@@ -198,6 +207,7 @@ class _QuickActionCard extends StatelessWidget {
     required this.description,
     required this.color,
     required this.onTap,
+    this.backgroundImage,
   });
 
   @override
@@ -207,9 +217,19 @@ class _QuickActionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: backgroundImage == null ? color.withOpacity(0.1) : null,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: color.withOpacity(0.3)),
+          image: backgroundImage != null
+              ? DecorationImage(
+                  image: AssetImage(backgroundImage!),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.1),
+                    BlendMode.darken,
+                  ),
+                )
+              : null,
         ),
         child: Column(
           children: [
@@ -224,6 +244,7 @@ class _QuickActionCard extends StatelessWidget {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
+                color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
@@ -232,7 +253,7 @@ class _QuickActionCard extends StatelessWidget {
               description,
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.grey[600],
+                color: Colors.white70,
               ),
               textAlign: TextAlign.center,
             ),
