@@ -16,46 +16,73 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Welcome Section
+            // Welcome Section with full-width background image and rounded corners
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(20),
+              height: 300,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColor.withOpacity(0.8),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              clipBehavior: Clip.hardEdge,
+              child: Stack(
                 children: [
-                  Text(
-                    'Welcome to CropGuard',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  // Background image
+                  Positioned.fill(
+                    child: Image.asset(
+                      'assets/bg_images/home.jpg',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 400),
-                  Text(
-                    'Protect your crops with AI-powered disease detection and expert advice',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white70,
+
+                  // Gradient overlay for better text readability
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(0.4),
+                            Colors.black.withOpacity(0.2),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Text content on top
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Welcome to CropGuard',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Protect your crops with AI-powered disease detection and expert advice',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
+
             const SizedBox(height: 24),
 
-            // Quick Actions
+            // Quick Actions Title
             const Text(
               'Quick Actions',
               style: TextStyle(
@@ -66,6 +93,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 16),
 
+            // Quick Actions Row 1
             Row(
               children: [
                 Expanded(
@@ -98,6 +126,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 16),
 
+            // Quick Actions Row 2
             Row(
               children: [
                 Expanded(
@@ -130,7 +159,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Recent Tips Section
+            // Recent Tips Section Title
             const Text(
               'Recent Tips',
               style: TextStyle(
@@ -141,6 +170,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 16),
 
+            // Recent Tips Cards
             ...List.generate(3, (index) {
               final tips = [
                 {
